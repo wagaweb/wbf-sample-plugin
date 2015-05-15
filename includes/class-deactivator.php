@@ -8,8 +8,8 @@ namespace WBSample\includes;
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    WBProperty
- * @subpackage WBProperty/includes
+ * @package    WBSample
+ * @subpackage WBSample/includes
  */
 class Deactivator {
 	public static function deactivate() {}

@@ -12,8 +12,8 @@ namespace WBSample\includes;
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    WBProperty
- * @subpackage WBProperty/includes
+ * @package    WBSample
+ * @subpackage WBSample/includes
  */
 class Plugin extends \Waboot_Template_Plugin {
 

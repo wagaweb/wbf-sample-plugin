@@ -6,8 +6,8 @@ namespace WBSample;
  * The plugin bootstrap file
  *
  * @link              http://www.waboot.com
- * @since             1.0.0
- * @package           Wb_Sample
+ * @since             0.0.1
+ * @package           WBSample
  *
  * @wordpress-plugin
  * Plugin Name:       Wb Sample
@@ -98,19 +98,19 @@ function deactivate() {
 function autoloader($class){
 	$plugin_path = plugin_dir_path( __FILE__ );
 
-	if (preg_match("/widgets/", $class)) {
-		$childclass = explode('\\', $class);
-		$name = end($childclass);
-		require_once $plugin_path."widgets/".$name.".php";
-	}
-
-	$childclass = explode('\\', $class);
-
 	if(isset($childclass[0]) && isset($childclass[1])){
-		if($childclass[0] == "WBSample" && $childclass[1] == "includes"){
-			$name = end($childclass);
-			$name = lcfirst(preg_replace("/_/","-",$name));
-			require_once $plugin_path."includes/class-".$name.".php";
+		if($childclass[0] == "WBSample"){
+			switch($childclass[1]){
+				case "includes":
+					$name = end($childclass);
+					$name = lcfirst(preg_replace("/_/","-",$name));
+					require_once $plugin_path."includes/class-".$name.".php";
+					break;
+				case "widgets":
+					$name = end($childclass);
+					require_once $plugin_path."widgets/".$name.".php";
+					break;
+			}
 		}
 	}
 }

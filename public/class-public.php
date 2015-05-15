@@ -8,8 +8,8 @@ namespace WBSample\pub;
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the dashboard-specific stylesheet and JavaScript.
  *
- * @package    WBProperty
- * @subpackage WBProperty/public
+ * @package    WBSample
+ * @subpackage WBSample/public
  */
 class Pub {
 
