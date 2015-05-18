@@ -113,4 +113,13 @@ function autoloader($class){
 			}
 		}
 	}
+
+	switch($class){
+		case 'WBSample\pub\Pub':
+			require_once plugin_dir_path( __FILE__ ) . 'public/class-public.php';
+			break;
+		case 'WBSample\admin\Admin':
+			require_once plugin_dir_path( __FILE__ ) . 'admin/class-admin.php';
+			break;
+	}
 }
