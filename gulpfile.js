@@ -15,7 +15,7 @@ var paths = {
     scripts: ['./public/assets/src/js/**/*.js'],
     mainjs: ['./public/assets/src/js/main.js'],
     bundlejs: ['./public/assets/src/js/bundle.js'],
-    scss: './public/assets/src/scss/*.scss'
+    scss: './public/assets/src/scss/**/*.scss'
 };
 
 gulp.task('cssmin',function(){
@@ -48,7 +48,7 @@ gulp.task('jsmin', ['browserify'] ,function(){
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
-    gulp.watch(paths.mainjs, ['jsmin']);
+    gulp.watch(paths.scripts, ['jsmin']);
     gulp.watch(paths.scss, ['cssmin']);
 });
 
