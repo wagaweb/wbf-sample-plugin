@@ -22,10 +22,18 @@ class Plugin extends \Waboot_Template_Plugin {
 	 */
 	public function __construct() {
 		parent::__construct( "wb-events", plugin_dir_path( dirname( __FILE__ ) ) );
+
+		//Setting the update server:
 		//$this->set_update_server("http://update.waboot.org/?action=get_metadata&slug={$this->plugin_name}&type=plugin");
+
 		$this->define_public_hooks();
 		$this->define_admin_hooks();
-		$this->add_template( "events-list.php", __( "Property", $this->plugin_name ), $this->plugin_dir . "/public/templates/events-list.php" );
+
+		//Adding a template selectable from the dashboard:
+		//$this->add_template( "sample.php", __( "Sample", $this->plugin_name ), $this->plugin_dir . "/public/templates/sample.php" );
+
+		//Adding a template injected into Wordpress template system:
+		//$this->add_cpt_template( "single-sample.php", $this->plugin_dir . "/public/templates/single-sample.php" );
 	}
 
 	/**
