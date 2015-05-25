@@ -16,11 +16,11 @@ var paths = {
     scripts: ['./public/assets/src/js/**/*.js'],
     mainjs: ['./public/assets/src/js/main.js'],
     bundlejs: ['./public/assets/src/js/bundle.js'],
-    scss: './public/assets/src/scss/**/main.scss'
+    mainscss: './public/assets/src/scss/main.scss'
 };
 
 gulp.task('cssmin',function(){
-    return gulp.src(paths.scss)
+    return gulp.src(paths.mainscss)
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(rename(plugin_slug+'.min.css'))
@@ -50,7 +50,7 @@ gulp.task('jsmin', ['browserify'] ,function(){
 // Rerun the task when a file changes
 gulp.task('watch', function() {
     gulp.watch(paths.scripts, ['jsmin']);
-    gulp.watch(paths.scss, ['cssmin']);
+    gulp.watch(paths.mainscss, ['cssmin']);
 });
 
 gulp.task('default', ['jsmin', 'cssmin', 'watch']);
