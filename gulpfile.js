@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     jsmin = require('gulp-jsmin'),
     uglify = require('gulp-uglify'),
+    sass = require('gulp-sass'),
     browserify = require('gulp-browserify');
 
 var plugin_slug = "wb-sample";
@@ -15,14 +16,14 @@ var paths = {
     scripts: ['./public/assets/src/js/**/*.js'],
     mainjs: ['./public/assets/src/js/main.js'],
     bundlejs: ['./public/assets/src/js/bundle.js'],
-    scss: './public/assets/src/scss/**/*.scss'
+    scss: './public/assets/src/scss/**/main.scss'
 };
 
 gulp.task('cssmin',function(){
     return gulp.src(paths.scss)
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
-        .pipe(concat(plugin_slug+'.min.css'))
+        .pipe(rename(plugin_slug+'.min.css'))
         .pipe(sourcemaps.write("."))
         .pipe(gulp.dest('./public/assets/dist/css'));
 });
