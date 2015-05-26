@@ -48,6 +48,14 @@ class Plugin extends \Waboot_Template_Plugin {
 		$this->loader->add_action( 'init', $plugin_public, 'rewrite_rules' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'scripts' );
+
+		/*
+		 * FOR WBF <= 0.11.0 ONLY
+		 *
+		 * If you want to use wbf_get_template_part in a plugin template, you must specify a filter like that, where the string following "path:"
+		 * is the string used in wbf_get_template_part. In the following example, the filter works for calls like: wbf_get_template_part('/templates/parts/content')
+		 */
+		//$this->loader->add_filter( 'wbf/get_template_part/path:/templates/parts/content', $plugin_public, 'get_template_part_override', 10, 2 );
 	}
 
 	/**

@@ -66,6 +66,22 @@ class Pub {
 	public function rewrite_rules(){}
 
 	/**
+	 * FOR WBF <= 0.11.0 ONLY
+	 *
+	 * This functions is hooked to "wbf/get_template_part/path:/templates/parts/content" filter and makes calls to wbf_get_template_part("/templates/parts/content","<slug>") works.
+	 * @param $templates
+	 * @param array $tpl the first element is the first argument of wbf_get_template_part, the second is the template slug
+	 *
+	 * @return mixed
+	 */
+	/*public function get_template_part_override($templates, $tpl){
+		if($tpl[1] == "slug"){
+			$templates['sources'][] = $this->plugin->get_dir()."public/".ltrim($tpl[0],"/")."-".$tpl[1].".php";
+		}
+		return $templates;
+	}*/
+
+	/**
 	 * WIDGETS
 	 */
 
