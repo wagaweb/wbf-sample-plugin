@@ -49,7 +49,7 @@ gulp.task('jsmin', ['browserify'] ,function(){
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
-    gulp.watch(paths.scripts, ['jsmin']);
+    gulp.watch(paths.mainjs, ['jsmin']);
     gulp.watch(paths.mainscss, ['cssmin']);
 });
 
