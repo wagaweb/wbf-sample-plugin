@@ -23,21 +23,20 @@
     "browserify": "^10.1.1",
     "browserify-shim": "^3.8.6",
     "grunt": "~0.4.1",
-    "grunt-contrib-copy": "^0.5.0",
+    "load-grunt-tasks": "^3.2.0",
     "grunt-pot": "^0.1.2",
     "gulp": "^3.8.11",
+    "gulp-bower": "0.0.10",
     "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.5.2",
-    "gulp-csso": "^1.0.0",
     "gulp-jsmin": "^0.1.5",
     "gulp-less": "^3.0.3",
-    "gulp-recess": "^1.1.2",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.0.1",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
     "gulp-zip": "^3.0.2",
-    "load-grunt-tasks": "^0.5.0"
+    "run-sequence": "^1.0.2"
   },
   "browserify": {
     "transform": [
