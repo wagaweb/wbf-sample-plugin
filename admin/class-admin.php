@@ -14,7 +14,7 @@ class Admin {
 
 	/**
 	 * The main plugin class
-	 * @var
+	 * @var \WBSample\includes\Plugin
 	 */
 	private $plugin;
 

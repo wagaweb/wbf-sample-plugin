@@ -21,7 +21,7 @@ class Plugin extends \Waboot_Template_Plugin {
 	 * Define the core functionality of the plugin.
 	 */
 	public function __construct() {
-		parent::__construct( "wb-events", plugin_dir_path( dirname( __FILE__ ) ) );
+		parent::__construct( "wb-sample", plugin_dir_path( dirname( __FILE__ ) ) );
 
 		//Setting the update server:
 		//$this->set_update_server("http://update.waboot.org/?action=get_metadata&slug={$this->plugin_name}&type=plugin");
@@ -66,7 +66,7 @@ class Plugin extends \Waboot_Template_Plugin {
 	}
 
 	/**
-	 * Load the required dependencies for this plugin.
+	 * Load the required dependencies for this plugin (called into parent::_construct())
 	 */
 	protected function load_dependencies() {
 		parent::load_dependencies();
