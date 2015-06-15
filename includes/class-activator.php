@@ -12,5 +12,20 @@ namespace WBSample\includes;
  * @subpackage WBSample/includes
  */
 class Activator {
-	public static function activate() {}
+	public static function activate() {
+		try{
+			$wbf_path = \WBSample\get_wbf_path();
+		}catch(\Exception $e){
+			self::trigger_error($e->getMessage());
+		}
+	}
+
+	public static function trigger_error($message, $errno = 0) {
+		if(isset($_GET['action']) /*&& $_GET['action'] == 'error_scrape'*/) {
+			echo '<strong>' . $message . '</strong>';
+			exit;
+		} else {
+			trigger_error($message, $errno);
+		}
+	}
 }

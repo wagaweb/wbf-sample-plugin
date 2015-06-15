@@ -27,23 +27,13 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+require_once plugin_dir_path( __FILE__ ) . 'includes/utils.php';
 try{
-	$wbf_path = get_option( "wbf_path" );
-	if(!$wbf_path) throw new \Exception("WBF Not Found");
-	$wbf_autoloader = $wbf_path."/includes/waboot-plugin/wbf-plugin-autoloader.php";
-	if(!file_exists($wbf_autoloader)){
-		$wbf_autoloader = ABSPATH."wp-content/themes/waboot/wbf"."/includes/waboot-plugin/wbf-plugin-autoloader.php";
-		if(!file_exists($wbf_autoloader)){
-			throw new \Exception("WBF Directory Not Found");
-		}
-		update_option("wbf_path",ABSPATH."wp-content/themes/waboot/wbf");
-	}
+	$wbf_autoloader = get_autoloader();
 	require_once $wbf_autoloader;
 }catch(\Exception $e){
-	$plugin_path = plugin_dir_path( __FILE__ ) . "wb-sample.php"; // /!\ /!\ /!\ HEY, LOOK! EDIT THIS ALSO!! /!\ /!\ /!\
-	if(is_plugin_active( $plugin_path ) ) {
-		deactivate_plugins( $plugin_path );
-	}
+	$plugin_path = "wb-sample/wb-sample.php"; // /!\ /!\ /!\ HEY, LOOK! EDIT THIS ALSO!! /!\ /!\ /!\
+	disable_plugin($plugin_path);
 }
 
 /********************************************************/
