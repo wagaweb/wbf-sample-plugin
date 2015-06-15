@@ -2,12 +2,22 @@
 
 namespace WBSample\includes;
 
+/**
+ * Get WBF Path
+ * @return mixed|void
+ * @throws \Exception
+ */
 function get_wbf_path(){
 	$wbf_path = get_option( "wbf_path" );
 	if(!$wbf_path) throw new \Exception("WBF Not Found");
 	return $wbf_path;
 }
 
+/**
+ * Get the WBF Plugin Autoloader
+ * @return string
+ * @throws \Exception
+ */
 function get_autoloader(){
 	$wbf_path = get_wbf_path();
 	$wbf_autoloader = $wbf_path."/includes/waboot-plugin/wbf-plugin-autoloader.php";
@@ -21,7 +31,11 @@ function get_autoloader(){
 	return $wbf_autoloader;
 }
 
-function disable_plugin($plugin){
+/**
+ * Disable specified plugin is it is active
+ * @param $plugin
+ */
+function maybe_disable_plugin($plugin){
 	if(!function_exists("is_plugin_active")){
 		include_once(ABSPATH.'wp-admin/includes/plugin.php');
 	}

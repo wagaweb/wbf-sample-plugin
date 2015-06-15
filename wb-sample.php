@@ -29,11 +29,10 @@ if ( ! defined( 'WPINC' ) ) {
 
 require_once plugin_dir_path( __FILE__ ) . 'includes/utils.php';
 try{
-	$wbf_autoloader = get_autoloader();
+	$wbf_autoloader = includes\get_autoloader();
 	require_once $wbf_autoloader;
 }catch(\Exception $e){
-	$plugin_path = "wb-sample/wb-sample.php"; // /!\ /!\ /!\ HEY, LOOK! EDIT THIS ALSO!! /!\ /!\ /!\
-	disable_plugin($plugin_path);
+	includes\maybe_disable_plugin("wb-sample/wb-sample.php"); // /!\ /!\ /!\ HEY, LOOK! EDIT THIS ALSO!! /!\ /!\ /!\
 }
 
 /********************************************************/
