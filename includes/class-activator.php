@@ -14,7 +14,7 @@ namespace WBSample\includes;
 class Activator {
 	public static function activate() {
 		try{
-			$wbf_path = \WBSample\get_wbf_path();
+			$wbf_path = \WBSample\includes\get_wbf_path();
 		}catch(\Exception $e){
 			self::trigger_error($e->getMessage());
 		}

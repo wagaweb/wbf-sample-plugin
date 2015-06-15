@@ -1,6 +1,6 @@
 <?php
 
-namespace WBSample;
+namespace WBSample\includes;
 
 function get_wbf_path(){
 	$wbf_path = get_option( "wbf_path" );
