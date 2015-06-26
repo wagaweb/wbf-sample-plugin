@@ -15,6 +15,7 @@ var gulp = require('gulp'),
 var plugin_slug = "wb-sample";
 
 var paths = {
+    builddir: "./builds",
     scripts: ['./public/assets/src/js/**/*.js'],
     mainjs: ['./public/assets/src/js/main.js'],
     bundlejs: ['./public/assets/src/js/bundle.js'],
@@ -50,8 +51,13 @@ gulp.task('browserify', function(){
         .pipe(gulp.dest('./public/assets/src/js'));
 });
 
-gulp.task('archive', function(){
+gulp.task('make-package', function(){
     return gulp.src(paths.build)
+        .pipe(copy(paths.builddir+"/pkg/"+plugin_slug));
+});
+
+gulp.task('archive', function(){
+    return gulp.src(paths.builddir+"/pkg/**")
         .pipe(zip(plugin_slug+'-'+pkg.version+'.zip'))
         .pipe(gulp.dest("./builds"));
 });
@@ -65,7 +71,7 @@ gulp.task('bower-update',function(){
 });
 
 gulp.task('build', function(callback) {
-    runSequence('bower-update', ['jsmin', 'cssmin'], 'archive', callback);
+    runSequence('bower-update', ['jsmin', 'cssmin'], 'make-package', 'archive', callback);
 });
 
 // Rerun the task when a file changes
