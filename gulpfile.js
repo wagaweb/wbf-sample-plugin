@@ -10,6 +10,7 @@ var gulp = require('gulp'),
     browserify = require('gulp-browserify'),
     zip = require('gulp-zip'),
     bower = require('gulp-bower'),
+    copy = require('gulp-copy'),
     runSequence  = require('run-sequence');
 
 var plugin_slug = "wb-sample";
