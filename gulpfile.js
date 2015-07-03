@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     zip = require('gulp-zip'),
     bower = require('gulp-bower'),
     copy = require('gulp-copy'),
+    csso = require('gulp-csso');
     runSequence  = require('run-sequence');
 
 var plugin_slug = "wb-sample";
@@ -29,6 +30,7 @@ gulp.task('cssmin',function(){
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(rename(plugin_slug+'.min.css'))
+        .pipe(csso())
         .pipe(sourcemaps.write("."))
         .pipe(gulp.dest('./public/assets/dist/css'));
 });
