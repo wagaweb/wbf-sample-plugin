@@ -13,6 +13,16 @@ function get_wbf_path(){
 	return $wbf_path;
 }
 
+/*function get_acf_path(){
+	$wbf_path = get_option( "wbf_path" );
+	if(!$wbf_path) throw new \Exception("WBF Not Found");
+	return $wbf_path."/vendor/acf/acf.php";
+}*/
+
+function wbf_is_installed(){
+	return get_option("wbf_installed");
+}
+
 /**
  * Get the WBF Plugin Autoloader
  * @return string
@@ -27,6 +37,9 @@ function get_autoloader(){
 			throw new \Exception("WBF Directory Not Found");
 		}
 		update_option("wbf_path",ABSPATH."wp-content/themes/waboot/wbf");
+	}
+	if(!wbf_is_installed()){
+		throw new \Exception("WBF is present, but not installed");
 	}
 	return $wbf_autoloader;
 }
