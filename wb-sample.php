@@ -20,6 +20,9 @@ namespace WBSample;
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       wb-sample
  * Domain Path:       /languages
+ *
+ *
+ * [IT] Lo scheletro del plugin e composto dai file wb-sample.php, admin/class-admin.php, public/class-public.php e includes/class-plugin.php (che connette admin e public e inizializza la plugin)
  */
 
 // If this file is called directly, abort.
@@ -57,6 +60,10 @@ if ( get_option( "wbf_installed" ) ) : // Starts the plugin only if Waboot Frame
 	 */
 	function run() {
 		$plugin = new includes\Plugin();
+		/*
+		 * [IT] Il metodo run si trova in: wbf/includes/pluginsframework/Plugin.php .
+		 * Al momento non fa altro che chiamare il metodo omonimo del Loader, che a sua volta registra azioni e filtri dentro WP.
+		 */
 		$plugin->run();
 	}
 	run();
