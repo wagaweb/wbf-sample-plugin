@@ -15,6 +15,8 @@ class Admin {
 	/**
 	 * The main plugin class
 	 * @var \WBSample\includes\Plugin
+	 *
+	 * [IT] E' possibile utilizzare $this->plugin->public_plugin per riferirsi alla classe in class-admin.php
 	 */
 	private $plugin;
 
