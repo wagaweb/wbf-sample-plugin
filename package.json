@@ -5,7 +5,7 @@
   "homepage": "http://www.waga.it/",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/waga/wb-events"
+    "url": "https://bitbucket.org/waga/wb-sample"
   },
   "bugs": {
     "url": "https://bitbucket.org/waga/wb-events/issues?status=new&status=open"
