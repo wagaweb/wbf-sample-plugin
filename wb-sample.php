@@ -94,20 +94,12 @@ function deactivate() {
 function autoloader($class){
 	$plugin_path = plugin_dir_path( __FILE__ );
 
-	if(isset($childclass[0]) && isset($childclass[1])){
-		if($childclass[0] == "WBSample"){
-			switch($childclass[1]){
-				case "includes":
-					$name = end($childclass);
-					$name = lcfirst(preg_replace("/_/","-",$name));
-					require_once $plugin_path."includes/class-".$name.".php";
-					break;
-				case "widgets":
-					$name = end($childclass);
-					require_once $plugin_path."widgets/".$name.".php";
-					break;
-			}
-		}
+	$components = explode('\\', $class);
+
+	if (isset($components) && $components[0] == 'WBSample' && $components[1] == 'widgets') {
+		$childclass = explode('\\', $class);
+		$name = end($childclass);
+		require_once $plugin_path."widgets/".$name.".php";
 	}
 
 	switch($class){
