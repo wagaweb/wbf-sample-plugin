@@ -13,14 +13,31 @@ function get_wbf_path(){
 	return $wbf_path;
 }
 
-/*function get_acf_path(){
-	$wbf_path = get_option( "wbf_path" );
-	if(!$wbf_path) throw new \Exception("WBF Not Found");
-	return $wbf_path."/vendor/acf/acf.php";
-}*/
-
+/**
+ * Check if WBF is installed as plugin
+ * 
+ * @return mixed
+ */
 function wbf_is_installed(){
 	return get_option("wbf_installed");
+}
+
+/**
+ * Checks if WBF is present
+ * 
+ * @return bool
+ */
+function wbf_is_present(){
+	return function_exists("WBF");
+}
+
+/**
+ * Checks if Plugins Framework is present
+ * 
+ * @return mixed
+ */
+function pluginsframmework_is_present(){
+	return class_exists("\\WBF\\includes\\pluginsframework\\Plugin");
 }
 
 /**
@@ -29,17 +46,17 @@ function wbf_is_installed(){
  * @throws \Exception
  */
 function get_autoloader(){
-	$wbf_path = get_wbf_path();
-	$wbf_autoloader = $wbf_path."/includes/waboot-plugin/wbf-plugin-autoloader.php";
+	try{
+		$wbf_path = get_wbf_path();
+	}catch(\Exception $e){
+		$wbf_path = ABSPATH."wp-content/plugins/wbf";
+	}
+	$wbf_autoloader = $wbf_path."/includes/pluginsframework/autoloader.php";
 	if(!file_exists($wbf_autoloader)){
-		$wbf_autoloader = ABSPATH."wp-content/themes/waboot/wbf"."/includes/waboot-plugin/wbf-plugin-autoloader.php";
+		$wbf_autoloader = ABSPATH."wp-content/plugins/wbf"."/includes/pluginsframework/autoloader.php";
 		if(!file_exists($wbf_autoloader)){
 			throw new \Exception("WBF Directory Not Found");
 		}
-		update_option("wbf_path",ABSPATH."wp-content/themes/waboot/wbf");
-	}
-	if(!wbf_is_installed()){
-		throw new \Exception("WBF is present, but not installed");
 	}
 	return $wbf_autoloader;
 }

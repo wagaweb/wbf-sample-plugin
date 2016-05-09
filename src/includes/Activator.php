@@ -12,9 +12,18 @@ namespace WBSample\includes;
  * @subpackage WBSample/includes
  */
 class Activator {
-	public static function activate() {
+	public static function activate($options = []) {
+		$options = wp_parse_args([
+			'check_wbf_install' => false
+		]);
 		try{
-			$wbf_path = \WBSample\includes\get_wbf_path();
+			if($options['check_wbf_install']){
+				$wbf_path = \WBSample\includes\get_wbf_path();
+			}else{
+				if(!\WBSample\includes\pluginsframmework_is_present()){
+					throw new \Exception("WBF Plugins Framework id not present");
+				}
+			}
 		}catch(\Exception $e){
 			self::trigger_error($e->getMessage());
 		}

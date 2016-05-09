@@ -1,6 +1,7 @@
 <?php
 
 namespace WBSample\includes;
+use WBF\includes\pluginsframework\TemplatePlugin;
 
 /**
  * The core plugin class.
@@ -15,8 +16,7 @@ namespace WBSample\includes;
  * @package    WBSample
  * @subpackage WBSample/includes
  */
-class Plugin extends \Waboot_Template_Plugin {
-
+class Plugin extends TemplatePlugin {
 	/**
 	 * Define the core functionality of the plugin.
 	 *
@@ -24,7 +24,7 @@ class Plugin extends \Waboot_Template_Plugin {
 	 * l'istanza viene memorizzata nella variabile globale $GLOBALS['wbf_loaded_plugins'] che è un array associativo indicizzato con i nomi delle plugin.
 	 */
 	public function __construct() {
-		parent::__construct( "wb-sample", plugin_dir_path( dirname( __FILE__ ) ) );
+		parent::__construct( "wb-sample", plugin_dir_path( dirname( dirname( __FILE__ ) ) ) );
 
 		//Setting the update server:
 		//$this->set_update_server("http://update.waboot.org/?action=get_metadata&slug={$this->plugin_name}&type=plugin");

@@ -1,6 +1,6 @@
 <?php
 
-namespace WBSample\pub;
+namespace WBSample\frontend;
 
 /**
  * The public-facing functionality of the plugin.
@@ -11,7 +11,7 @@ namespace WBSample\pub;
  * @package    WBSample
  * @subpackage WBSample/public
  */
-class Pub {
+class Frontend {
 
 	/**
 	 * The main plugin class
