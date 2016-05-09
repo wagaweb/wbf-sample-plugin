@@ -14,7 +14,10 @@ var gulp = require('gulp'),
     zip = require('gulp-zip'),
     bower = require('gulp-bower'),
     copy = require('gulp-copy'),
-    csso = require('gulp-csso');
+    csso = require('gulp-csso'),
+    postcss = require('gulp-postcss'),
+    autoprefixer = require('autoprefixer'),
+    cssnano = require('cssnano'),
     runSequence  = require('run-sequence');
 
 var plugin_slug = "wb-sample";
@@ -25,6 +28,7 @@ var paths = {
     mainjs: ['./assets/src/js/main.js'],
     bundlejs: ['./assets/dist/js/bundle.js'],
     mainscss: './assets/src/scss/main.scss',
+    maincss: './assets/src/css/main.css',
     build: [
         "**/*", 
         "!.*" , 
@@ -42,11 +46,31 @@ var paths = {
  * Compile .scss into <pluginslug>.min.css
  */
 gulp.task('compile_sass',function(){
+    var processors = [
+        autoprefixer({browsers: ['last 1 version']}),
+        cssnano()
+    ];
     return gulp.src(paths.mainscss)
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
+        .pipe(postcss(processors))
         .pipe(rename(plugin_slug+'.min.css'))
-        .pipe(csso())
+        .pipe(sourcemaps.write("."))
+        .pipe(gulp.dest('./assets/dist/css'));
+});
+
+/**
+ * Compile .css into <pluginslug>.min.css
+ */
+gulp.task('compile_css',function(){
+    var processors = [
+        autoprefixer({browsers: ['last 1 version']}),
+        cssnano()
+    ];
+    return gulp.src(paths.maincss)
+        .pipe(sourcemaps.init())
+        .pipe(postcss(processors))
+        .pipe(rename(plugin_slug+'.min.css'))
         .pipe(sourcemaps.write("."))
         .pipe(gulp.dest('./assets/dist/css'));
 });
