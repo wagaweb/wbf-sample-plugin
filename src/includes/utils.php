@@ -36,7 +36,7 @@ function wbf_is_present(){
  * 
  * @return mixed
  */
-function pluginsframmework_is_present(){
+function pluginsframework_is_present(){
 	return class_exists("\\WBF\\includes\\pluginsframework\\Plugin");
 }
 

@@ -83,7 +83,7 @@ spl_autoload_register(function($class){
 register_activation_hook( __FILE__, function(){ Activator::activate(); } );
 register_deactivation_hook( __FILE__, function(){ Deactivator::deactivate(); } );
 
-if(\WBSample\includes\pluginsframmework_is_present()): // Starts the plugin only if WBF Plugin Framework is present
+if(\WBSample\includes\pluginsframework_is_present()): // Starts the plugin only if WBF Plugin Framework is present
 	require_once plugin_dir_path( __FILE__ ) . 'src/includes/Plugin.php';
 	/**
 	 * Begins execution of the plugin.
