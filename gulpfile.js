@@ -7,7 +7,10 @@ var gulp = require('gulp'),
     jsmin = require('gulp-jsmin'),
     uglify = require('gulp-uglify'),
     sass = require('gulp-sass'),
-    browserify = require('gulp-browserify'),
+    browserify = require('browserify'),
+    source = require('vinyl-source-stream'), //https://www.npmjs.com/package/vinyl-source-stream
+    buffer = require('vinyl-buffer'), //https://www.npmjs.com/package/vinyl-buffer
+    babelify = require('babelify'),
     zip = require('gulp-zip'),
     bower = require('gulp-bower'),
     copy = require('gulp-copy'),
@@ -18,71 +21,111 @@ var plugin_slug = "wb-sample";
 
 var paths = {
     builddir: "./builds",
-    scripts: ['./public/assets/src/js/**/*.js'],
-    mainjs: ['./public/assets/src/js/main.js'],
-    bundlejs: ['./public/assets/src/js/bundle.js'],
-    mainscss: './public/assets/src/scss/main.scss',
-    build: ["**/*", "!.*" , "!Gruntfile.js", "!gulpfile.js" , "!package.json", "!bower.json", "!{builds,builds/**}", "!{node_modules,node_modules/**}", "!{bower_components,bower_components/**}"]
+    scripts: ['./assets/src/js/**/*.js'],
+    mainjs: ['./assets/src/js/main.js'],
+    bundlejs: ['./assets/dist/js/bundle.js'],
+    mainscss: './assets/src/scss/main.scss',
+    build: [
+        "**/*", 
+        "!.*" , 
+        "!Gruntfile.js", 
+        "!gulpfile.js", 
+        "!package.json",
+        "!bower.json",
+        "!{builds,builds/**}",
+        "!{node_modules,node_modules/**}",
+        "!{bower_components,bower_components/**}"
+    ]
 };
 
-gulp.task('cssmin',function(){
+/**
+ * Compile .scss into <pluginslug>.min.css
+ */
+gulp.task('compile_sass',function(){
     return gulp.src(paths.mainscss)
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(rename(plugin_slug+'.min.css'))
         .pipe(csso())
         .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest('./public/assets/dist/css'));
+        .pipe(gulp.dest('./assets/dist/css'));
 });
 
-gulp.task('jsmin', ['browserify'] ,function(){
+/**
+ * Creates and minimize bundle.js into <pluginslug>.min.js
+ */
+gulp.task('compile_js', ['browserify'] ,function(){
     return gulp.src(paths.bundlejs)
         .pipe(sourcemaps.init())
         .pipe(uglify())
         .pipe(rename(plugin_slug+'.min.js'))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./public/assets/dist/js'));
+        .pipe(gulp.dest('./assets/dist/js'));
 });
 
+/**
+ * Browserify magic! Creates bundle.js
+ */
 gulp.task('browserify', function(){
-    return gulp.src(paths.mainjs)
-        .pipe(browserify({
+    return browserify(paths.mainjs,{
             insertGlobals : true,
-            debug : true
-        }))
-        .pipe(rename('bundle.js'))
-        .pipe(gulp.dest('./public/assets/src/js'));
+            debug: true
+        })
+        .transform("babelify", {presets: ["es2015"]}).bundle()
+        .pipe(source('bundle.js'))
+        .pipe(buffer()) //This might be not required, it works even if commented
+        .pipe(gulp.dest('./assets/dist/js'));
 });
 
+/**
+ * Creates the plugin package
+ */
 gulp.task('make-package', function(){
     return gulp.src(paths.build)
         .pipe(copy(paths.builddir+"/pkg/"+plugin_slug));
 });
 
+/**
+ * Compress che package directory
+ */
 gulp.task('archive', function(){
     return gulp.src(paths.builddir+"/pkg/**")
         .pipe(zip(plugin_slug+'-'+pkg.version+'.zip'))
         .pipe(gulp.dest("./builds"));
 });
 
+/**
+ * Bower vendors Install
+ */
 gulp.task('bower-install',function(){
     return bower();
 });
 
+/**
+ * Bower Update
+ */
 gulp.task('bower-update',function(){
     return bower({cmd: 'update'});
 });
 
+/**
+ * Runs a build
+ */
 gulp.task('build', function(callback) {
     runSequence('bower-update', ['jsmin', 'cssmin'], 'make-package', 'archive', callback);
 });
 
-// Rerun the task when a file changes
+/**
+ * Rerun the task when a file changes
+ */
 gulp.task('watch', function() {
-    gulp.watch(paths.mainjs, ['jsmin']);
-    gulp.watch(paths.mainscss, ['cssmin']);
+    gulp.watch(paths.mainjs, ['compile_js']);
+    gulp.watch(paths.mainscss, ['compile_sass']);
 });
 
+/**
+ * Default task
+ */
 gulp.task('default', function(callback){
-    runSequence('bower-install', ['jsmin', 'cssmin'], 'watch', callback);
+    runSequence('bower-install', ['compile_js', 'compile_sass'], 'watch', callback);
 });

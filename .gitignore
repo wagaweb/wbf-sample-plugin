@@ -11,6 +11,12 @@ assets/cache/*.*
 assets/dist/*.*
 
 ############
+## COMPILED
+############
+assets/dist/css/*
+assets/dist/js/*
+
+############
 ## IDEs
 ############
 
@@ -57,7 +63,5 @@ tmp/
 temp/
 ._*
 .Trashes
-
 .svn
-
 *.codekit
