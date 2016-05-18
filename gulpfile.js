@@ -19,6 +19,8 @@ var gulp = require('gulp'),
     autoprefixer = require('autoprefixer'),
     cssnano = require('cssnano'),
     runSequence  = require('run-sequence');
+    wpPot = require('gulp-wp-pot'),
+    sort = require('gulp-sort');
 
 var plugin_slug = "wb-sample";
 
@@ -116,6 +118,20 @@ gulp.task('archive', function(){
     return gulp.src(paths.builddir+"/pkg/**")
         .pipe(zip(plugin_slug+'-'+pkg.version+'.zip'))
         .pipe(gulp.dest("./builds"));
+});
+
+/*
+  * Make the pot file
+ */
+gulp.task('make-pot', function () {
+    return gulp.src(['*.php', 'src/**/*.php'])
+        .pipe(sort())
+        .pipe(wpPot( {
+            domain: plugin_slug,
+            destFile: plugin_slug+'.pot',
+            team: 'Waga <info@waga.it>'
+        } ))
+        .pipe(gulp.dest('languages/'));
 });
 
 /**
