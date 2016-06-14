@@ -14,8 +14,8 @@ namespace WBSample;
  * Plugin URI:        http://www.waboot.com/
  * Description:       Sample Plugin for WBF
  * Version:           0.0.1
- * Author:            Jon Doe
- * Author URI:        http://www.jon.doe/
+ * Author:            WAGA
+ * Author URI:        http://www.waga.it/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       wb-sample

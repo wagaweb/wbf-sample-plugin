@@ -20,7 +20,7 @@ class Activator {
 			if($options['check_wbf_install']){
 				$wbf_path = \WBSample\includes\get_wbf_path();
 			}else{
-				if(!\WBSample\includes\pluginsframmework_is_present()){
+				if(!\WBSample\includes\pluginsframework_is_present()){
 					throw new \Exception("WBF Plugins Framework id not present");
 				}
 			}
