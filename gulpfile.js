@@ -152,7 +152,7 @@ gulp.task('bower-update',function(){
  * Runs a build
  */
 gulp.task('build', function(callback) {
-    runSequence('bower-update', ['jsmin', 'cssmin'], 'make-package', 'archive', callback);
+    runSequence('bower-update', ['compile_js', 'compile_css'], 'make-package', 'archive', callback);
 });
 
 /**
