@@ -83,20 +83,15 @@ spl_autoload_register(function($class){
 register_activation_hook( __FILE__, function(){ Activator::activate(); } );
 register_deactivation_hook( __FILE__, function(){ Deactivator::deactivate(); } );
 
-if(\WBSample\includes\pluginsframework_is_present()): // Starts the plugin only if WBF Plugin Framework is present
-	require_once plugin_dir_path( __FILE__ ) . 'src/includes/Plugin.php';
-	/**
-	 * Begins execution of the plugin.
-	 *
-	 * @since    1.0.0
-	 */
-	function run() {
-		$plugin = new Plugin();
-		/*
-		 * [IT] Il metodo run si trova in: wbf/includes/pluginsframework/Plugin.php .
-		 * Al momento non fa altro che chiamare il metodo omonimo del Loader, che a sua volta registra azioni e filtri dentro WP.
-		 */
-		$plugin->run();
-	}
-	run();
-endif;
+if(!\WBSample\includes\pluginsframework_is_present()) return; // Starts the plugin only if WBF Plugin Framework is present
+
+require_once 'src/includes/Plugin.php';
+/*
+ * Begins execution of the plugin.
+ */
+$plugin = new Plugin();
+/*
+ * [IT] Il metodo run si trova in: wbf/includes/pluginsframework/Plugin.php .
+ * Al momento non fa altro che chiamare il metodo omonimo del Loader, che a sua volta registra azioni e filtri dentro WP.
+ */
+$plugin->run();
