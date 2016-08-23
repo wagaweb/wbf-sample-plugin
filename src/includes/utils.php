@@ -51,6 +51,15 @@ function get_autoloader(){
 	}catch(\Exception $e){
 		$wbf_path = ABSPATH."wp-content/plugins/wbf";
 	}
+
+	//Require the base autoloader
+	$wbf_base_autoloader = $wbf_path."/wbf-autoloader.php";
+	if(is_file($wbf_base_autoloader)){
+		require_once $wbf_base_autoloader;
+	}else{
+		throw new \Exception("WBF Directory Not Found");
+	}
+
 	$wbf_autoloader = $wbf_path."/includes/pluginsframework/autoloader.php";
 	if(!file_exists($wbf_autoloader)){
 		$wbf_autoloader = ABSPATH."wp-content/plugins/wbf"."/includes/pluginsframework/autoloader.php";
