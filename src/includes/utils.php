@@ -60,9 +60,9 @@ function get_autoloader(){
 		throw new \Exception("WBF Directory Not Found");
 	}
 
-	$wbf_autoloader = $wbf_path."/includes/pluginsframework/autoloader.php";
+	$wbf_autoloader = $wbf_path."/components/pluginsframework/autoloader.php";
 	if(!file_exists($wbf_autoloader)){
-		$wbf_autoloader = ABSPATH."wp-content/plugins/wbf"."/includes/pluginsframework/autoloader.php";
+		$wbf_autoloader = ABSPATH."wp-content/plugins/wbf"."/src/components/pluginsframework/autoloader.php";
 		if(!file_exists($wbf_autoloader)){
 			throw new \Exception("WBF Directory Not Found");
 		}

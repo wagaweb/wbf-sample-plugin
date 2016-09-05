@@ -1,7 +1,7 @@
 <?php
 
 namespace WBSample\includes;
-use WBF\includes\pluginsframework\TemplatePlugin;
+use WBF\components\pluginsframework\TemplatePlugin;
 
 /**
  * The core plugin class.
