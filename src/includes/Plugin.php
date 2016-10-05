@@ -27,7 +27,7 @@ class Plugin extends TemplatePlugin {
 		parent::__construct( "wb-sample", plugin_dir_path( dirname( dirname( __FILE__ ) ) ) );
 
 		//Setting the update server:
-		//$this->set_update_server("http://update.waboot.org/?action=get_metadata&slug={$this->plugin_name}&type=plugin");
+		//$this->set_update_server("http://update.waboot.org/resource/info/plugin/$this->plugin_name");
 
 		$this->define_public_hooks();
 		$this->define_admin_hooks();
