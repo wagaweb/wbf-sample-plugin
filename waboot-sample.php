@@ -6,7 +6,7 @@ namespace WBSample;
  * The plugin bootstrap file
  *
  * @link              http://www.waboot.com
- * @since             0.0.1
+ * @since             1.0.0
  * @package           WBSample
  *
  * @wordpress-plugin
