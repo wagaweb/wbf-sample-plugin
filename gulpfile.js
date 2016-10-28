@@ -18,7 +18,7 @@ var gulp = require('gulp'),
     postcss = require('gulp-postcss'),
     autoprefixer = require('autoprefixer'),
     cssnano = require('cssnano'),
-    runSequence  = require('run-sequence');
+    runSequence  = require('run-sequence'),
     wpPot = require('gulp-wp-pot'),
     sort = require('gulp-sort');
 
