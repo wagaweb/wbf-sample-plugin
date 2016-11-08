@@ -24,7 +24,7 @@ class Plugin extends TemplatePlugin {
 	 * l'istanza viene memorizzata nella variabile globale $GLOBALS['wbf_loaded_plugins'] che è un array associativo indicizzato con i nomi delle plugin.
 	 */
 	public function __construct() {
-		parent::__construct( "wb-sample", plugin_dir_path( dirname( dirname( __FILE__ ) ) ) );
+		parent::__construct( "waboot-sample", plugin_dir_path( dirname( dirname( __FILE__ ) ) ) );
 
 		//Setting the update server:
 		//$this->set_update_server("http://update.waboot.org/resource/info/plugin/$this->plugin_name");

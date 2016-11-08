@@ -22,7 +22,7 @@ var gulp = require('gulp'),
     wpPot = require('gulp-wp-pot'),
     sort = require('gulp-sort');
 
-var plugin_slug = "wb-sample";
+var plugin_slug = "waboot-sample";
 
 var paths = {
     builddir: "./builds",

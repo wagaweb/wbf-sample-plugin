@@ -10,7 +10,7 @@ namespace WBSample;
  * @package           WBSample
  *
  * @wordpress-plugin
- * Plugin Name:       Wb Sample
+ * Plugin Name:       Waboot Sample Plugin
  * Plugin URI:        http://www.waboot.com/
  * Description:       Sample Plugin for WBF
  * Version:           0.0.1

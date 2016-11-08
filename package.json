@@ -1,14 +1,14 @@
 {
-  "name": "WBSample",
+  "name": "Waboot Sample Plugin",
   "version": "1.0.0",
   "author": "Waga",
   "homepage": "http://www.waga.it/",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/waga/wb-sample"
+    "url": "https://bitbucket.org/waga/waboot-sample"
   },
   "bugs": {
-    "url": "https://bitbucket.org/waga/wb-events/issues?status=new&status=open"
+    "url": "https://bitbucket.org/waga/waboot-sample/issues?status=new&status=open"
   },
   "licenses": [
     {
