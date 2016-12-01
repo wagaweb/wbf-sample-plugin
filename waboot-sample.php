@@ -5,24 +5,16 @@ namespace WBSample;
 /**
  * The plugin bootstrap file
  *
- * @link              http://www.waboot.com
- * @since             1.0.0
- * @package           WBSample
- *
- * @wordpress-plugin
  * Plugin Name:       Waboot Sample Plugin
  * Plugin URI:        http://www.waboot.com/
  * Description:       Sample Plugin for WBF
  * Version:           0.0.1
- * Author:            WAGA
- * Author URI:        http://www.waga.it/
+ * Author:            Foo
+ * Author URI:        http://www.foo.bar/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       wb-sample
  * Domain Path:       /languages
- *
- *
- * [IT] Lo scheletro del plugin e composto dai file wb-sample.php, admin/class-admin.php, public/class-public.php e includes/class-plugin.php (che connette admin e public e inizializza la plugin)
  */
 
 use WBSample\includes\Activator;
@@ -70,28 +62,11 @@ spl_autoload_register( function($class){
 	}
 });
 
-//Backward compatibility autoloader for pub\Pub
-spl_autoload_register(function($class){
-	$prefix = "WBSample\\";
-	$plugin_path = plugin_dir_path( __FILE__ );
-	$base_dir = $plugin_path."src/";
-	if($class == $prefix."pub\\Pub"){
-		require_once $base_dir."public/Public.php";
-	}
-});
-
 register_activation_hook( __FILE__, function(){ Activator::activate(); } );
 register_deactivation_hook( __FILE__, function(){ Deactivator::deactivate(); } );
 
 if(!\WBSample\includes\pluginsframework_is_present()) return; // Starts the plugin only if WBF Plugin Framework is present
 
-require_once 'src/includes/Plugin.php';
-/*
- * Begins execution of the plugin.
- */
+require_once 'src/Plugin.php';
 $plugin = new Plugin();
-/*
- * [IT] Il metodo run si trova in: wbf/includes/pluginsframework/Plugin.php .
- * Al momento non fa altro che chiamare il metodo omonimo del Loader, che a sua volta registra azioni e filtri dentro WP.
- */
 $plugin->run();
