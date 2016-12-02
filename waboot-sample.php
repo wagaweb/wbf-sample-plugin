@@ -17,8 +17,6 @@ namespace WBSample;
  * Domain Path:       /languages
  */
 
-use WBSample\includes\Activator;
-use WBSample\includes\Deactivator;
 use WBSample\includes\Plugin;
 
 if ( ! defined( 'WPINC' ) ) {
