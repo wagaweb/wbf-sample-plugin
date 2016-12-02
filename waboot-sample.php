@@ -25,19 +25,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die; //If this file is called directly, abort.
 }
 
-require_once plugin_dir_path( __FILE__ ) . 'src/includes/utils.php';
-try{
-	$wbf_autoloader = includes\get_autoloader();
-	require_once $wbf_autoloader;
-}catch(\Exception $e){
-	includes\maybe_disable_plugin("wb-sample/wb-sample.php"); // /!\ /!\ /!\ HEY, LOOK! EDIT THIS ALSO!! /!\ /!\ /!\
-}
-
-/********************************************************/
-/****************** PLUGIN BEGIN ************************
-/********************************************************/
-
-// Custom plugin autoloader function
+// Custom PS4 autoloader
 spl_autoload_register( function($class){
 	$prefix = "WBSample\\";
 	$plugin_path = plugin_dir_path( __FILE__ );
@@ -62,11 +50,22 @@ spl_autoload_register( function($class){
 	}
 });
 
-register_activation_hook( __FILE__, function(){ Activator::activate(); } );
-register_deactivation_hook( __FILE__, function(){ Deactivator::deactivate(); } );
+require_once 'src/includes/wbf-plugin-check-functions.php';
+includes\include_wbf_autoloader();
 
-if(!\WBSample\includes\pluginsframework_is_present()) return; // Starts the plugin only if WBF Plugin Framework is present
+if(class_exists("\\WBF\\components\\pluginsframework\\BasePlugin")){
+	require_once 'src/Plugin.php';
+	$plugin = new Plugin();
+	$plugin->run();
+}else{
+	if(is_admin()){
+		add_action( 'admin_notices', function(){
+			?>
+			<div class="error">
+				<p><?php _e( basename(__FILE__). ' requires Waboot Framework' ); ?></p>
+			</div>
+			<?php
+		});
+	}
+}
 
-require_once 'src/Plugin.php';
-$plugin = new Plugin();
-$plugin->run();
