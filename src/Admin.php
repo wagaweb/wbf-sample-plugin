@@ -13,7 +13,7 @@ class Admin{
 	 *
 	 * @param null|string $plugin_name
 	 * @param null|string $version
-	 * @param null $core The plugin main object
+	 * @param null|Plugin $core The plugin main object
 	 */
 	public function __construct( $plugin_name = null, $version = null, $core = null ) {
 		if(isset($core)) $this->plugin = $core;
