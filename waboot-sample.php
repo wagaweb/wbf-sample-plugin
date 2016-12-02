@@ -17,7 +17,7 @@ namespace WBSample;
  * Domain Path:       /languages
  */
 
-use WBSample\includes\Plugin;
+use WBSample\Plugin;
 
 if ( ! defined( 'WPINC' ) ) {
 	die; //If this file is called directly, abort.
