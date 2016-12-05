@@ -1,8 +1,8 @@
 <?php
 
-namespace WBSample;
+namespace WBSample\frontend;
 
-class Admin{
+class Frontend{
 	/**
 	 * @var \WBSample\Plugin
 	 */
@@ -19,7 +19,7 @@ class Admin{
 		if(isset($core)) $this->plugin = $core;
 	}
 
-	public function hello_admin(){
-		var_dump("I'm the admin part of: ".$this->plugin->get_plugin_name()."!");
+	public function hello_frontend(){
+		var_dump("I'm the frontend part of: ".$this->plugin->get_plugin_name()."!");
 	}
 }
