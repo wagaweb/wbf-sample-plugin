@@ -21,5 +21,12 @@ class Frontend{
 
 	public function hello_frontend(){
 		var_dump("I'm the frontend part of: ".$this->plugin->get_plugin_name()."!");
+
+		/*
+		 * You can easily use a class from another part of the plugin:
+		 */
+		$Foo = $this->plugin->get_loader()->admin_plugin->Foo;
+
+		var_dump($Foo->hello_foo()." -- Called from the frontend!");
 	}
 }
