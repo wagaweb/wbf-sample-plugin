@@ -27,6 +27,20 @@ class Plugin extends BasePlugin {
 		 * Every actions and filters added through $this->loader is stored in $this->loader->actions and $this->loader->filters.
 		 * They are hooked to WP once you call $this->run()
 		 */
+
+		/*
+		 * If you followed the standard structure, you now will have access to both Frontend and Admin parts of your plugin:
+		 */
+
+		$admin_part = $this->loader->admin_plugin;
+		$frontend_part = $this->loader->public_plugin;
+
+		/*
+		 * And can specify hooks like this:
+		 */
+
+		$this->loader->add_action( 'admin_init', $admin_part, 'hello_admin');
+		$this->loader->add_action( 'init', $frontend_part, 'hello_frontend');
 	}
 
 	public function hello_world(){

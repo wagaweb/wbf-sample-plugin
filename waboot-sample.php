@@ -6,7 +6,7 @@ namespace WBSample;
  * The plugin bootstrap file
  *
  * Plugin Name:       Waboot Sample Plugin
- * Plugin URI:        http://www.waboot.com/
+ * Plugin URI:        http://www.foo.bar/
  * Description:       Sample Plugin for WBF
  * Version:           0.0.1
  * Author:            Foo
