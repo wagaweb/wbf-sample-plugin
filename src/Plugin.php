@@ -1,7 +1,7 @@
 <?php
 
 namespace WBSample;
-use WBF\components\pluginsframework\BasePlugin;
+use WBF\components\pluginsframework\TemplatePlugin;
 
 /**
  * The core plugin class.
@@ -9,7 +9,7 @@ use WBF\components\pluginsframework\BasePlugin;
  * @package    WBSample
  * @subpackage WBSample/includes
  */
-class Plugin extends BasePlugin {
+class Plugin extends TemplatePlugin {
 	/**
 	 * Define the core functionality of the plugin.
 	 */
@@ -27,6 +27,18 @@ class Plugin extends BasePlugin {
 		 * Every actions and filters added through $this->loader is stored in $this->loader->actions and $this->loader->filters.
 		 * They are hooked to WP once you call $this->run()
 		 */
+
+		/*
+		 * This will add a new template to WordPress template selector, You can specify the post type as third argument.
+		 * Plugins will search the template in child and parent theme directories first.
+		 * You can override the template by placing a file with the same name in:
+		 * - wp-content/themes/theme-name/plugin-name/template-name.php
+		 * - wp-content/themes/theme-name/templates/plugin-name/template-name.php
+		 * - wp-content/themes/theme-name/templates/parts/plugin-name/template-name.php
+		 *
+		 * Where "theme-name" is the child or parent theme name.
+		 */
+		$this->add_template("Custom Page Template",$this->get_src_dir()."/templates/custom-page-template.php");
 	}
 
 	public function hello_world(){
