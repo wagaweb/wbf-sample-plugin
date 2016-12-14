@@ -1,0 +1,1 @@
+This is a custom template automatically assigned by WordPress template hierarchy system (manually added).
