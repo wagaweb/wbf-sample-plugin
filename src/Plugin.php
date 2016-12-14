@@ -41,9 +41,10 @@ class Plugin extends TemplatePlugin {
 		$this->add_template("Custom Page Template",$this->get_src_dir()."/templates/custom-page-template.php");
 
 		/*
-		 * WBF will automatically check for templates linked to WordPress hierarchy under /src/templates. But you can also add them manually:
+		 * WBF will automatically check for templates linked to WordPress hierarchy under /src/templates. But you can also add them manually (if they are under a different name or directory):
+		 * The first params is the name of the template that WordPress will looking for, so you could link the 'single-sample-post-type.php' to a file named differently.
 		 */
-		$this->add_cpt_template("sample-post-type.php", $this->get_src_dir()."/templates/sample-post-type.php");
+		$this->add_hierarchy_template("single-sample-post-type.php", $this->get_src_dir()."/templates/single-sample-post-type.php");
 	}
 
 	/**
