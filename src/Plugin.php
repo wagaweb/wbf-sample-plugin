@@ -39,7 +39,13 @@ class Plugin extends BasePlugin {
 		 * Now we can load modules
 		 */
 
-		$this->loader->register_module('sample');
+		$this->get_loader()->register_module('sample');
+
+		/*
+		 * The constructor is endend. Next, as stated in the plugin main file, the method run() will be executed.
+		 * This method will call the run() method on Loader.
+		 * The Loader run() method will call load_modules(), which in turn register all their hooks by calling their own run() method.
+		 */
 	}
 
 	public function hello_world(){
@@ -47,7 +53,8 @@ class Plugin extends BasePlugin {
 	}
 
 	/**
-	 * Loads plugin dependecies, called durint parent::__construct().
+	 * Overrides parent method to inject the new Loader.
+	 * Loads plugin dependencies, called during parent::__construct()
 	 */
 	public function load_dependencies() {
 		//Load Notice Manager if needed
@@ -55,5 +62,13 @@ class Plugin extends BasePlugin {
 		$this->notice_manager = &$wbf_notice_manager;
 
 		$this->loader = new Loader($this,__NAMESPACE__);
+	}
+
+	/**
+	 * Overrides the parent method to get the new Loader.
+	 * @return Loader
+	 */
+	public function get_loader() {
+		return $this->loader;
 	}
 }

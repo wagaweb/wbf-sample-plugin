@@ -59,7 +59,7 @@ class Loader extends \WBF\components\pluginsframework\Loader{
 	}
 
 	/**
-	 * Calls run() on every registered module and fires the hooks registration
+	 * Calls run() on every registered module and fires the hooks registration.
 	 */
 	public function run() {
 		$this->load_modules();
