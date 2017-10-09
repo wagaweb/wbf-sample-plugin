@@ -3,7 +3,7 @@
 namespace WBSample;
 use WBF\components\pluginsframework\BasePlugin;
 use WBF\components\utils\Utilities;
-use WBSample\includes\Loader;
+use WBF\components\pluginsframework\ModuleLoader;
 
 /**
  * The core plugin class.
@@ -13,7 +13,7 @@ use WBSample\includes\Loader;
  */
 class Plugin extends BasePlugin {
 	/**
-	 * @var Loader
+	 * @var ModuleLoader
 	 */
 	protected $loader;
 
@@ -61,12 +61,12 @@ class Plugin extends BasePlugin {
 		$wbf_notice_manager = Utilities::get_wbf_notice_manager();
 		$this->notice_manager = &$wbf_notice_manager;
 
-		$this->loader = new Loader($this,__NAMESPACE__);
+		$this->loader = new ModuleLoader($this,__NAMESPACE__);
 	}
 
 	/**
 	 * Overrides the parent method to get the new Loader.
-	 * @return Loader
+	 * @return ModuleLoader
 	 */
 	public function get_loader() {
 		return $this->loader;

@@ -2,8 +2,8 @@
 
 namespace WBSample\modules\sample;
 
-use WBSample\includes\BaseModule;
-use WBSample\includes\ModuleInterface;
+use WBF\components\pluginsframework\BaseModule;
+use WBF\components\pluginsframework\ModuleInterface;
 
 class Module extends BaseModule implements ModuleInterface {
 	public function run() {
