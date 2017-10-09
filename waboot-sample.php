@@ -48,7 +48,7 @@ spl_autoload_register( function($class){
 	}
 });
 
-require_once 'src/includes/wbf-plugin-check-functions.php';
+require_once 'src/includes/wbf-utils.php';
 includes\include_wbf_autoloader();
 
 if(class_exists("\\WBF\\components\\pluginsframework\\BasePlugin")){
