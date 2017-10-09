@@ -48,7 +48,7 @@ spl_autoload_register( function($class){
 	}
 });
 
-require_once 'src/includes/wbf-plugin-check-functions.php';
+require_once 'src/includes/wbf-utils.php';
 includes\include_wbf_autoloader();
 
 if(class_exists("\\WBF\\components\\pluginsframework\\BasePlugin")){
@@ -57,11 +57,16 @@ if(class_exists("\\WBF\\components\\pluginsframework\\BasePlugin")){
 	$plugin->run();
 }else{
 	if(is_admin()){
+		add_action( 'admin_init' , function(){
+			includes\install_wbf_wp_update_hooks();
+		});
 		add_action( 'admin_notices', function(){
 			?>
-			<div class="error">
-				<p><?php _e( basename(__FILE__). ' requires Waboot Framework' ); ?></p>
-			</div>
+            <div class="error">
+                <p>
+					<?php echo includes\get_wbf_download_button('Waboot Sample Plugin'); ?>
+                </p>
+            </div>
 			<?php
 		});
 	}
